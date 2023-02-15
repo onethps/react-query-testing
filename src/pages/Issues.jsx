@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import IssuesList from "../components/IssuesList";
 import LabelList from "../components/LabelList";
+import { possibleStatus } from "../helpers/defaultData";
 
 export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState([]);
@@ -40,14 +41,6 @@ export default function Issues() {
     </div>
   );
 }
-
-const possibleStatus = [
-  { id: "backlog", label: "Backlog" },
-  { id: "todo", label: "To-do" },
-  { id: "inProgress", label: "In Progress" },
-  { id: "done", label: "Done" },
-  { id: "cancelled", label: "Cancelled" },
-];
 
 const StatusSelect = ({ value, onChange }) => {
   return (
