@@ -40,7 +40,7 @@ export default function IssueDetails() {
                 ))
               )}
             </section>
-            <aside></aside>
+            {/* <aside></aside> */}
           </main>
         </>
       )}
