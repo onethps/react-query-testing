@@ -22,7 +22,7 @@ export default function Issues() {
       <main>
         <div>
           <h1>Issues</h1>
-          <IssuesList status={status} selectedLabels={selectedLabels} />
+          <IssuesList status={status} labels={selectedLabels} />
         </div>
         <aside>
           <LabelList
