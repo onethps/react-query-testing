@@ -10,7 +10,7 @@ export const useIssueData = (issueNumber) => {
 };
 
 function useIssueComments(issueNumber) {
-  return useQuery(["issues", issueNumber, "comments"], () => {
+  return useQuery(["issues", issueNumber, "comments"], async () => {
     return fetch(`/api/issues/${issueNumber}/comments`).then((res) =>
       res.json()
     );
