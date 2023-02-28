@@ -39,7 +39,7 @@ export default function AddIssue() {
         <label htmlFor="comment">Comment</label>
         <textarea name="comment" id="comment" placeholder="comment" />
         <button type="submit" disabled={addIssueMutation.isLoading}>
-          {addIssueMutation.isLoading ? "Adding Issue..." : " Add Issue"}
+          {addIssueMutation.isLoading ? "Adding Issue..." : "Add Issue"}
         </button>
       </form>
     </div>

@@ -1,16 +1,20 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { Comment } from "./Comment";
+import { IssueAssignment } from "./IssueAssignment";
 import { IssueHeader } from "./IssueHeader";
+import { IssueStatus } from "./IssueStatus";
 
 export const useIssueData = (issueNumber) => {
-  return useQuery(["issues", issueNumber], async () => {
-    return fetch(`/api/issues/${issueNumber}`).then((res) => res.json());
+  return useQuery(["issues", issueNumber], ({ signal }) => {
+    return fetch(`/api/issues/${issueNumber}`, { signal }).then((res) =>
+      res.json()
+    );
   });
 };
 
 function useIssueComments(issueNumber) {
-  return useQuery(["issues", issueNumber, "comments"], async () => {
+  return useQuery(["issues", issueNumber, "comments"], () => {
     return fetch(`/api/issues/${issueNumber}/comments`).then((res) =>
       res.json()
     );
@@ -40,7 +44,16 @@ export default function IssueDetails() {
                 ))
               )}
             </section>
-            {/* <aside></aside> */}
+            <aside>
+              <IssueStatus
+                status={issueQuery.data.status}
+                issueNumber={issueQuery.data.number.toString()}
+              />
+              <IssueAssignment
+                assignee={issueQuery.data.assignee}
+                issueNumber={issueQuery.data.number.toString()}
+              />
+            </aside>
           </main>
         </>
       )}
