@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Comment } from "./Comment";
 import { IssueAssignment } from "./IssueAssignment";
 import { IssueHeader } from "./IssueHeader";
+import { IssueLabels } from "./IssueLabels";
 import { IssueStatus } from "./IssueStatus";
 
 export const useIssueData = (issueNumber) => {
@@ -51,6 +52,10 @@ export default function IssueDetails() {
               />
               <IssueAssignment
                 assignee={issueQuery.data.assignee}
+                issueNumber={issueQuery.data.number.toString()}
+              />
+              <IssueLabels
+                labels={issueQuery.data.labels}
                 issueNumber={issueQuery.data.number.toString()}
               />
             </aside>
