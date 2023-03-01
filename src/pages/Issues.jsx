@@ -8,6 +8,7 @@ import { StatusSelect } from "../components/StatusSelect";
 export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState([]);
   const [status, setStatus] = useState("");
+  const [pageNum, setPageNum] = useState(1);
 
   const filterToggler = (labelValue) => {
     console.log(selectedLabels.includes(labelValue));
@@ -16,13 +17,19 @@ export default function Issues() {
       return;
     }
     setSelectedLabels([...selectedLabels, labelValue]);
+    setPageNum(1);
   };
 
   return (
     <div>
       <main>
         <section>
-          <IssuesList labels={selectedLabels} status={status} />
+          <IssuesList
+            labels={selectedLabels}
+            status={status}
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+          />
         </section>
         <aside>
           <LabelList
@@ -32,7 +39,10 @@ export default function Issues() {
           <h3>Status</h3>
           <StatusSelect
             value={status}
-            onChange={(event) => setStatus(event.target.value)}
+            onChange={(event) => {
+              setStatus(event.target.value);
+              setPageNum(1);
+            }}
           />
           <hr />
           <Link className="button" to="/add">
