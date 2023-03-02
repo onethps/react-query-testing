@@ -25,12 +25,12 @@ export const IssueItem = ({
   return (
     <li
       onMouseEnter={() => {
-        queryClient.prefetchQuery(["issues", number.toString()], () =>
+        queryClient.prefetchInfiniteQuery(["issues", number.toString()], () =>
           fetchWithError(`/api/issues/${number}`)
         );
-        queryClient.prefetchQuery(
+        queryClient.prefetchInfiniteQuery(
           ["issues", number.toString(), "comments"],
-          () => fetchWithError(`/api/issues/${number}/comments`)
+          () => fetchWithError(`/api/issues/${number}/comments?page=1`)
         );
       }}
     >
